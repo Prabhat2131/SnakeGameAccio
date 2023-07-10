@@ -11,6 +11,6 @@ If snake hits boundaries or its own body the game will be over.
 ## Screenshots
 ![Screenshot 2023-07-09 154226](https://github.com/Prabhat2131/SnakeGameAccio/assets/128222484/be13517e-0d8c-4cfb-9d1d-1db144b99aea)
 
-![Screenshot 2023-07-09 154320](https://github.com/Prabhat2131/SnakeGameAccio/assets/128222484/3622029f-df16-432e-abff-9f4c51359f60)
+![Screenshot 2023-07-11 003402](https://github.com/Prabhat2131/SnakeGameAccio/assets/128222484/17aea9ff-8b6f-441b-97c3-3d1806a867a7)
 
 
