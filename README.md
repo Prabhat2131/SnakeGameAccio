@@ -9,6 +9,8 @@ If snake hits boundaries or its own body the game will be over.
 ## Using Java Swing and Java awt.
 
 ## Screenshots
-![Game screen](https://raw.githubusercontent.com/Prabhat2131/SnakeGameAccio/main/Screenshot%202023-07-09%20154226.png)
+![Screenshot 2023-07-09 154226](https://github.com/Prabhat2131/SnakeGameAccio/assets/128222484/be13517e-0d8c-4cfb-9d1d-1db144b99aea)
 
-![score screen](https://raw.githubusercontent.com/Prabhat2131/SnakeGameAccio/main/Screenshot%202023-07-09%20154320.png)
+![Screenshot 2023-07-09 154320](https://github.com/Prabhat2131/SnakeGameAccio/assets/128222484/3622029f-df16-432e-abff-9f4c51359f60)
+
+
