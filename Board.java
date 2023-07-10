@@ -29,6 +29,9 @@ public class Board extends JPanel implements ActionListener {
     boolean downDirection = false;
     boolean inGame = true;
 
+
+    // replay
+    boolean replayMode=false;
     Board() {
         TAdapter tAdapter = new TAdapter();
         addKeyListener(tAdapter);
@@ -41,11 +44,12 @@ public class Board extends JPanel implements ActionListener {
 
     // initialize game
     public void initGame() {
+        replayMode = false;
         DOTS = 3;
 
         // initialize snake's position
-        x[0] = 250;
-        y[0] = 250;
+        x[0] = 50;
+        y[0] = 50;
         for (int i = 1; i < DOTS; i++) {
             x[i] = x[0] + DOT_SIZE * i;
             y[i] = y[0];
@@ -101,20 +105,48 @@ public class Board extends JPanel implements ActionListener {
         apple_x = ((int)(Math.random()*39))*DOT_SIZE;
         apple_y = ((int)(Math.random()*39))*DOT_SIZE;
     }
+
+    // CHECK for replay
+    public void replayGame() {
+        replayMode = true;
+        inGame = true;
+        DOTS = 3;
+        // Reset the snake's position
+        x[0] = 50;
+        y[0] = 50;
+        for (int i = 1; i < DOTS; i++) {
+            x[i] = x[0] + DOT_SIZE * i;
+            y[i] = y[0];
+        }
+        locateApple();
+        timer.start();
+        replayMode = false; // Reset replay mode
+
+        // Set the initial direction to right
+        leftDirection = false;
+        rightDirection = true;
+        upDirection = false;
+        downDirection = false;
+    }
+
+
     //Check for collision with border or body
     public void checkCollision() {
-        //Check collision with body
-        for (int i = 1; i < DOTS; i++) {
-            if (i > 4 && x[0] == x[i] && y[0] == y[i]) {
-                inGame = false;
-                break;
+        if (!replayMode) {
+            //Check collision with body
+            for (int i = 1; i < DOTS; i++) {
+                if (i > 4 && x[0] == x[i] && y[0] == y[i]) {
+                    inGame = false;
+                    break;
+                }
             }
+
+            //Check for collision with border
+            if (x[0] < 0) inGame = false;
+            if (x[0] >= B_WIDTH) inGame = false;
+            if (y[0] < 0) inGame = false;
+            if (y[0] >= B_HEIGHT) inGame = false;
         }
-       //Check for collision with border
-        if (x[0] <0) inGame = false;
-        if (x[0] >= B_WIDTH) inGame = false;
-        if (y[0] < 0) inGame = false;
-        if (y[0]>= B_HEIGHT) inGame = false;
     }
     public void gameOver(Graphics g){
         String msg="Game Over";
@@ -130,7 +162,12 @@ public class Board extends JPanel implements ActionListener {
         g.drawString(scoremsg,(B_HEIGHT-fontMetrics.stringWidth(scoremsg))/2,3*(B_HEIGHT/4));
 
 
-}
+
+        if (!replayMode) {
+            String replayMsg = "Press 'R' to replay";
+            g.drawString(replayMsg, (B_HEIGHT - fontMetrics.stringWidth(replayMsg)) / 2, B_HEIGHT / 2);
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent actionEvent){
         if(inGame)
@@ -191,6 +228,12 @@ public class Board extends JPanel implements ActionListener {
                 leftDirection=false;
                 rightDirection=false;
                 downDirection=true;
+
+
+
+            }
+            if (key == KeyEvent.VK_R && !inGame) {
+                replayGame();
             }
         }
     }
